@@ -1,0 +1,1 @@
+使用 springboot auto configuration 配置 kiebase, 省略了kmodule.xml的配置

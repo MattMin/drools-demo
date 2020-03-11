@@ -1,0 +1,1 @@
+使用kmodule.xml配置kiebase
