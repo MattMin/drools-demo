@@ -24,7 +24,7 @@
     </kbase>
 
 
-<!--    <kbase name="kbase2" packages="com.mzy.rules.demo.pkg2" default="false">-->
-<!--        <ksession name="ksession2" type="stateless"/>-->
-<!--    </kbase>-->
+    <kbase name="kbase2" packages="com.mzy.rules.demo.pkg2" default="true">
+        <ksession name="ksession2" default="true"/>
+    </kbase>
 </kmodule>

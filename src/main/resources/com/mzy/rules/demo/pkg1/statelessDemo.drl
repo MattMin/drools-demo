@@ -7,7 +7,8 @@ import java.util.Date
 // 判断年龄
 rule "is of valid age"
 when
-    $a: Applicant(age < 18)
+    Applicant(age < 18)
+    $a: Application()
 then
     $a.setValid(false);
 end

@@ -1,11 +1,9 @@
-package com.mzy.droolsdemo.entity;
+package com.mzy.droolsdemo.entity.stateless;
 
 public class Applicant {
     private String name;
 
     private int age;
-
-    private boolean valid;
 
     public String getName() {
         return name;
@@ -23,17 +21,8 @@ public class Applicant {
         this.age = age;
     }
 
-    public boolean isValid() {
-        return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-
     public Applicant(String name, int age, boolean valid) {
         this.name = name;
         this.age = age;
-        this.valid = valid;
     }
 }

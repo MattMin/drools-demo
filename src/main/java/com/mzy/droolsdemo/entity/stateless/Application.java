@@ -1,4 +1,4 @@
-package com.mzy.droolsdemo.entity;
+package com.mzy.droolsdemo.entity.stateless;
 
 import java.util.Date;
 
