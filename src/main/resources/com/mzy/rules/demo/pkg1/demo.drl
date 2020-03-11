@@ -1,0 +1,22 @@
+package com.mzy.rules.demo.pkg1
+
+import com.mzy.droolsdemo.entity.Applicant;
+import com.mzy.droolsdemo.entity.Application
+import java.util.Date
+
+// 判断年龄
+rule "is of valid age"
+when
+    $a: Applicant(age < 18)
+then
+    $a.setValid(false);
+end
+
+
+// 判断申请时间
+rule "申请时间在当前时间之前"
+when
+    $b: Application(dateApplied.before(new Date()))
+then
+    $b.setValid(true);
+end
