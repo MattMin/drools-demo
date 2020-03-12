@@ -16,7 +16,7 @@ public class AddressController {
     private AddressService addressService;
 
     @GetMapping("test/{num}")
-    public void test(@PathVariable Integer num){
+    public void test(@PathVariable Integer num) {
         addressService.test(num);
     }
 }

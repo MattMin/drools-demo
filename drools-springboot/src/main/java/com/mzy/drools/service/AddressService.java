@@ -5,9 +5,12 @@ import com.mzy.drools.entity.fact.AddressCheckResult;
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.StatelessKieSession;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 /**
  * @author mzyupc@163.com
@@ -18,26 +21,28 @@ import javax.annotation.Resource;
 public class AddressService {
     @Resource
     private KieContainer kieContainer;
+    @Resource
+    private StatelessKieSession statelessKieSession;
+    @Resource
+    private KieSession kieSession;
 
-    public void test(int num){
+    public void test(int num) {
         Address address = new Address();
         address.setPostcode(generateRandom(num));
         AddressCheckResult result = new AddressCheckResult();
 
         // 有状态kie session
-        KieSession kieSession = kieContainer.newKieSession();
         kieSession.insert(result);
         kieSession.insert(address);
         int ruleFiredCount = kieSession.fireAllRules();
         kieSession.destroy();
 
         // 无状态 kie session 调用
-//        StatelessKieSession session = kieContainer.newStatelessKieSession();
-//        session.execute(Arrays.asList(address, result));
+//        statelessKieSession.execute(Arrays.asList(address, result));
 
         log.info("触发了" + ruleFiredCount + "条规则");
 
-        if(result.isPass()){
+        if (result.isPass()) {
             log.info("规则校验通过");
         }
 
@@ -45,15 +50,16 @@ public class AddressService {
 
     /**
      * 生成随机数
+     *
      * @param num
      * @return
      */
     public String generateRandom(int num) {
         String chars = "0123456789";
-        StringBuffer number=new StringBuffer();
+        StringBuffer number = new StringBuffer();
         for (int i = 0; i < num; i++) {
             int rand = (int) (Math.random() * 10);
-            number=number.append(chars.charAt(rand));
+            number = number.append(chars.charAt(rand));
         }
         return number.toString();
     }
